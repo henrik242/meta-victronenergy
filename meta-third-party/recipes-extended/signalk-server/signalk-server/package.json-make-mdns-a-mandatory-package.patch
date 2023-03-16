@@ -1,0 +1,45 @@
+From d68456fbbaf76450673ffdadfc15924379371210 Mon Sep 17 00:00:00 2001
+From: mpvader <mvader@victronenergy.com>
+Date: Thu, 16 Mar 2023 14:04:01 +0100
+Subject: [PATCH] package.json: make mdns a mandatory package.
+
+if mdns doesn't install, signalk-server will fall back on dnssd2. And where
+the mdns package actually relies on a mDNS install on the host (like in Venus
+OS case is avahi-daemon), which is whats needed, dnssd2 does the opposite:
+
+dnssd2 implements the whole mdns mechanism itself, which won't work since
+you can't have two mdns responders on one device.
+
+By making mdns a mandatory package, at least OE will complain if the build
+fails.
+
+WIP: consider making the rest of those optional packages mandatory as well,
+since how they are now, OE will attempty but on failure just say nothing and
+continue with the build of Venus OS
+---
+ package.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/package.json b/package.json
+index f23c4ae..c493897 100644
+--- a/package.json
++++ b/package.json
+@@ -114,6 +114,7 @@
+     "jsonwebtoken": "^8.1.1",
+     "listr": "^0.14.1",
+     "lodash": "^4.17.4",
++    "mdns": "^2.5.1",
+     "mdns-js": "^1.0.3",
+     "minimist": "^1.1.0",
+     "moment": "^2.10.6",
+@@ -140,7 +141,6 @@
+     "@signalk/signalk-to-nmea0183": "^1.0.0",
+     "@signalk/vesselpositions": "^1.0.0",
+     "@signalk/zones": "^1.0.0",
+-    "mdns": "^2.5.1",
+     "serialport": "^9.0.1"
+   },
+   "devDependencies": {
+-- 
+2.34.1
+
