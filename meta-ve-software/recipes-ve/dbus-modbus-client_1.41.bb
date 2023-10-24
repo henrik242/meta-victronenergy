@@ -11,6 +11,7 @@ RDEPENDS:${PN} = "\
     python3-core \
     python3-dbus \
     python3-dnslib \
+    python3-multiprocessing \
     python3-pygobject \
     python3-pymodbus \
 "
