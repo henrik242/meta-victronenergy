@@ -25,6 +25,7 @@ BOARD_IDS:nanopi = "\
     file://board_id_maxigx_a10 \
     file://board_id_multiplus2 \
     file://board_id_multiplus2_a10 \
+    file://board_id_nucleo \
     file://board_id_paygo \
 "
 
