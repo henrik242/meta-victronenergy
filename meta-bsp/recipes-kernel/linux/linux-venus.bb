@@ -15,8 +15,11 @@ LINUX_VERSION_EXTENSION = "-venus-${LINUX_VERSION_VENUS}"
 PV = "${LINUX_VERSION}${LINUX_VERSION_EXTENSION}"
 
 GIT_BRANCH = "venus-${LINUX_VERSION}"
+GIT_BRANCH:sunxi = "mans/nucleo"
+SRCREV:sunxi = "fddf1aa0dfe8b5c6d526dff5ab4414f1349b2407"
 
 SRC_URI = "git://github.com/victronenergy/linux.git;protocol=https;branch=${GIT_BRANCH};tag=v${PV}"
+SRC_URI:sunxi = "git://github.com/victronenergy/linux.git;protocol=https;branch=${GIT_BRANCH}"
 S = "${WORKDIR}/git"
 
 do_configure:append() {
