@@ -46,6 +46,7 @@ RDEPENDS:${PN} += "\
     custom-rc.d \
     dbus \
     default-locale \
+    dio-extender \
     dnsmasq \
     dpkg-start-stop \
     e2fsprogs \
