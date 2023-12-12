@@ -55,7 +55,6 @@ RDEPENDS:${PN}:append:einstein = "\
     linux-firmware-bcm43430 \
     linux-firmware-bcm43430a1 \
     read-edid \
-    venus-button-handler \
 "
 
 RDEPENDS:${PN}:append:nanopi = " \
@@ -70,6 +69,7 @@ RDEPENDS:${PN}:append:sunxi = "\
     rtl8723du \
     swupdate \
     swupdate-scripts \
+    venus-button-handler \
 "
 
 RDEPENDS:${PN}:append:rpi = "\
