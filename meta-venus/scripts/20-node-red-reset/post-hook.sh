@@ -2,21 +2,22 @@
 
 script="Node-RED reset"
 
-function beep () {
-  if [ -f /opt/victronenergy/prodtest/buzzer.sh ]; then
-    BEEP="/opt/victronenergy/prodtest/buzzer.sh"
-  elif [ -f /opt/victronenergy/prodtest/buzzer.py ]; then
-    BEEP="/opt/victronenergy/prodtest/buzzer.py"
-  else
-    BEEP="echo beep "
+function notify () {
+  if [ -d /service/dbus-characterdisplay ]; then
+      cd /service && svc -d dbus-characterdisplay
   fi
 
-  for i in 1 2 3
-  do
-    ${BEEP} 1
-    sleep 0.2
-    ${BEEP} 0
-  done
+  if [ -f /opt/victronenergy/prodtest/notify.py ]; then
+    NOTIFY="/opt/victronenergy/prodtest/notify.py"
+  else
+    NOTIFY="echo notify "
+  fi
+
+  ${NOTIFY} --message "Node-RED reset done" --count 3
+
+  if [ -d /service/dbus-characterdisplay ]; then
+      cd /service && svc -u dbus-characterdisplay
+  fi
 }
 
 echo "### ${script} starting"
@@ -33,7 +34,7 @@ done
 sync
 
 # Play notification to let the user know the script is done
-beep
+notify
 
 echo "### ${script} done"
 
